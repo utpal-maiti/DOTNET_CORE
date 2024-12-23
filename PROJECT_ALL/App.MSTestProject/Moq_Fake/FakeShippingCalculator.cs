@@ -1,4 +1,5 @@
 ﻿using App_ClassLibrary;
+using App_ClassLibrary.Contracts;
 
 namespace App_MSTest.tests
 {

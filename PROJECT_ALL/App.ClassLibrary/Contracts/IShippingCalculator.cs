@@ -1,4 +1,4 @@
-﻿namespace App_ClassLibrary
+﻿namespace App_ClassLibrary.Contracts
 {
     public interface IShippingCalculator
     {

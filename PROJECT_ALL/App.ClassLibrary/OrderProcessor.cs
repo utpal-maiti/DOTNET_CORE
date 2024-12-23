@@ -1,4 +1,6 @@
-﻿namespace App_ClassLibrary
+﻿using App_ClassLibrary.Contracts;
+
+namespace App_ClassLibrary
 {
     public class OrderProcessor
     {
