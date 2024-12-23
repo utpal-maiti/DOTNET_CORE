@@ -1,4 +1,8 @@
 
+using App_ClassLibrary.Contracts;
+using App_ClassLibrary.Persistence;
+using Microsoft.Extensions.Configuration;
+
 namespace App_Api
 {
     public class Program
@@ -12,6 +16,14 @@ namespace App_Api
             builder.Services.AddControllers();
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
+
+            builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+            //builder.Services.AddAutoMapper();
+
+            //builder.Services.AddDbContext<VegaDbContext>(options => 
+            //options.UseSqlServer(Configuration.GetConnectionString("Default")));
+
 
             var app = builder.Build();
 

@@ -1,5 +1,7 @@
 ﻿using App_ClassLibrary;
 
+using App_MSTest.tests;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
