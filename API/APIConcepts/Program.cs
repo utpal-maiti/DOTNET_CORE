@@ -1,4 +1,6 @@
 
+using APIConcepts.Services;
+
 namespace APIConcepts
 {
     public class Program
@@ -8,6 +10,9 @@ namespace APIConcepts
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            // Register the ProductService with the dependency injection container
+            builder.Services.AddScoped<IProductService, ProductService>();
+            builder.Services.AddScoped<IMessageService, MessageService>();
 
             builder.Services.AddControllers();
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
