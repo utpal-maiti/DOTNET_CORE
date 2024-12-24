@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using APIConcepts.Models;
+
+using Microsoft.AspNetCore.Mvc;
 namespace APIConcepts.Controllers
 {
     //Attribute Routing
@@ -6,6 +8,7 @@ namespace APIConcepts.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
+        private static readonly List<Product> Products = new List<Product>();
         // Route: api/products
         [HttpGet]
         public IActionResult GetAll()
@@ -21,6 +24,7 @@ namespace APIConcepts.Controllers
             // Route: api/products/{id}
             return Ok($"Product{id}");
         }
+     
 
         [HttpGet]
         [Route("category/{category}")]
@@ -39,6 +43,22 @@ namespace APIConcepts.Controllers
             return CreatedAtAction(nameof(GetById), new { id = 3 }, product);
         }
 
+        [HttpPost] public IActionResult Create([FromBody] Product product) { 
+
+            if (!ModelState.IsValid) { 
+                return BadRequest(ModelState); 
+            } 
+            product.Id = Products.Count + 1; Products.Add(product); 
+            return CreatedAtAction(nameof(GetById), new { id = product.Id }, product); 
+        }
+        [HttpGet("{id}")]
+        public IActionResult GetProductById(int id)
+        {
+            var product = Products.FirstOrDefault(p => p.Id == id);
+            if (product == null) { return NotFound(); }
+            return Ok(product);
+        }
+
         [HttpPut("{id}")]
         public IActionResult Update(int id, [FromBody] string product)
         {
@@ -50,5 +70,6 @@ namespace APIConcepts.Controllers
         {
             return NoContent();
         }
+
     }
 }
