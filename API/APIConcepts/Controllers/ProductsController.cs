@@ -43,7 +43,8 @@ namespace APIConcepts.Controllers
             return CreatedAtAction(nameof(GetById), new { id = 3 }, product);
         }
 
-        [HttpPost] public IActionResult Create([FromBody] Product product) { 
+        [HttpPost] 
+        public IActionResult Create([FromBody] Product product) { 
 
             if (!ModelState.IsValid) { 
                 return BadRequest(ModelState); 
